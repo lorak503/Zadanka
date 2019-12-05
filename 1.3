@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <omp.h>
+#include <time.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main(){
+    
+    int N, i;
+    double licznik;
+    double czas_startu;
+    
+    scanf("%d",&N);
+    unsigned int myseed=time(NULL);
+    for(int x = 4; x > 0; x--) {
+        czas_startu=omp_get_wtime();
+        licznik = 0;
+        #pragma omp parallel firstprivate(myseed) num_threads(x), reduction(+ : licznik)
+        {    
+        
+            myseed+=omp_get_thread_num();
+        
+            #pragma omp for
+            for(i=0;i<N;i++)
+            {
+               double x = (double)rand_r(&myseed)/RAND_MAX;
+               double y = ((double)rand_r(&myseed)/RAND_MAX)*4;
+               if(4/(1+x*x)>=y) {
+                  licznik++;
+               }
+            
+            }
+        }
+        printf("liczba watkow: %d, wynik: %f, czas: %f s\n",x,licznik/N,omp_get_wtime()-czas_startu);
+    }
+    return 0;
+}
