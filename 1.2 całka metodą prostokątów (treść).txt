@@ -1,0 +1,6 @@
+Napisz program wyznaczający w sposób równoległt  wartość całki za pomocą metody prostokątów:
+
+całka(a,b): sqrt(1 - x^2)dx
+
+gdzie liczba prostokątów oraz liczby a i b będąpodawane przez użytkowników na początku 
+działania programu.

@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <omp.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+
+double funkcja(double x){
+    
+    
+    return x*x;
+}
+
+int main(){
+    
+    int x,i,N;
+    double czas_startu;
+    double a,b,dx,wynik;
+    printf("\nPodaj poczatek przedzialu: ");
+    scanf("%lf",&a);
+    printf("\nPodaj koniec przedzialu: ");
+    scanf("%lf",&b);
+    printf("\nPodaj dokladnosc: ");
+    scanf("%d",&N);
+    printf("\n%f %f %d\n",a,b,N);
+  for(x=4;x>0;x--)
+  {
+      czas_startu=omp_get_wtime();
+      wynik=0;
+    #pragma omp parallel reduction(+ : wynik) num_threads(x)
+    {
+        dx=(b-a)/N;
+        #pragma omp for
+        for(i=1;i<=N;i++){
+            
+            wynik+=funkcja(a+i*dx);
+        }
+        
+        
+        }
+        wynik*=dx;
+        printf("liczba watkow: %d, wynik: %lf, czas: %lf s \n",x,wynik,omp_get_wtime()-czas_startu);
+  }
+    
+    
+    
+    
+    
+ return 0;   
+}

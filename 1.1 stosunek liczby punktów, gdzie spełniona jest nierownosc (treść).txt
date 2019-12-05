@@ -1,0 +1,9 @@
+Napisz program wyświetlający stosunek liczby punktów dla których spełniona jest poniższa 
+nierówność do całkowitej liczby punktów, gdzie punkty (x,y), dla ktorych 0 <= x <= 1 oraz
+0 <= y <= 4, będą losowe, a ich liczba będzie podawana przez użytkownika na początku
+działąnia programu.
+
+y <= 4/(1 + x^2)
+
+Program ma wyświetlić równieżczas działania powyższego algorytmu dla obliczeń z 
+wykorzystaniem 1, 2 i 4 wątków
