@@ -6,7 +6,7 @@
 using namespace std;
  
 double f(double x) {
-    return sqrt(1-(x*x));
+    return sqrt(1-(x*x)); //te funkcje przy trapezach mozna zamienic na te ktora jest w zadaniu
 }
  
 int main() {
@@ -54,9 +54,9 @@ int main() {
  
     #pragma omp for nowait
     for(i = 1; i <= N; i++) {
-        s += f(a + i * h);
+        s += f(a + i * h);   
     }
-    s *= h;
+    s *= h;                      //w trapezowej zmienić na s = (s + (f(a) + f(b)) / 2) * (b-a)/N;
     }
     cout << "Wartosc calki wynosi : " << setw(8) << s << endl << endl;
     cout << "czas: " << omp_get_wtime() - start << endl;
