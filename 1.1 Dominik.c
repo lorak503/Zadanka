@@ -1,3 +1,5 @@
+//gcc -fopenmp -o program program.c
+
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
